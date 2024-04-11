@@ -1,0 +1,32 @@
+{
+  "name": "task-control-node",
+  "version": "1.0.0",
+  "description": "A generic task controller in node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js localhost 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoSMafra/task-control-node.git"
+  },
+  "keywords": [
+    "node.js",
+    "task",
+    "backend"
+  ],
+  "author": "GustavoSMafra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GustavoSMafra/task-control-node/issues"
+  },
+  "homepage": "https://github.com/GustavoSMafra/task-control-node#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "mysql2": "^3.9.4",
+    "nodemon": "^3.1.0",
+    "sequelize": "^6.37.2"
+  }
+}
