@@ -23,9 +23,14 @@
   },
   "homepage": "https://github.com/GustavoSMafra/task-control-node#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.4",
+    "node-gyp": "^10.1.0",
     "nodemon": "^3.1.0",
     "sequelize": "^6.37.2"
   }
