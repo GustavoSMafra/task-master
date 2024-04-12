@@ -1,19 +1,19 @@
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 const db = require('../db/conn');
 
-const User = db.define('User', {
+const Category = db.define('Category', {
     name: {
         type: DataTypes.STRING,
         require: true
     },
-    username: {
+    color: { 
         type: DataTypes.STRING,
         require: true
     },
-    password: {
+    icon: { 
         type: DataTypes.STRING,
         require: true
     }
 });
 
-module.exports = User;
+module.exports = Category;
