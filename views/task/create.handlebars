@@ -1,0 +1,21 @@
+<div>
+    <h1>Criar tarefas</h1>
+    <form action="/task/create" method="post">
+        <div>
+            <label for="title">Título</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="description">Descrição</label>
+            <input type="text" name="description" id="description">
+        </div>
+        <div>
+            <label for="deadline">Data final</label>
+            <input type="date" name="deadline" id="deadline">
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <div>
+        <a href="/task">Voltar</a>
+    </div>
+</div>

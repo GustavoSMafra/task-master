@@ -1,0 +1,13 @@
+<div>
+    <h1>Tarefas</h1>
+    <ul>
+        {{#each taskList}}
+            <li>
+                <a href="/task/update/{{this.id}}">{{this.title}}</a>
+            </li>
+        {{/each}}
+    </ul>
+    <div>
+        <a href="/task/create">Cadastrar tarefa</a>
+    </div>
+</div>

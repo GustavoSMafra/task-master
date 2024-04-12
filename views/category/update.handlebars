@@ -1,0 +1,21 @@
+<div>
+    <h1>Atualizar Categoria</h1>
+    <form action="/category/update/{{category.id}}" method="post">
+        <div>
+            <label for="name"></label>
+            <input type="text" name="name" id="name" value="{{category.name}}">
+        </div>
+        <div>
+            <label for="color"></label>
+            <input type="text" name="color" id="color" value="{{category.color}}">
+        </div>
+        <div>
+            <label for="icon"></label>
+            <input type="text" name="icon" id="icon" value="{{category.icon}}">
+        </div>
+        <button type="submit">Atualizar</button>
+    </form>
+    <div>
+        <a href="/category">Voltar</a>
+    </div>
+</div>

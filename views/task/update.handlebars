@@ -1,0 +1,21 @@
+<div>
+    <h1>Atualizar tarefa</h1>
+    <form action="/task/update/{{task.id}}" method="post">
+        <div>
+            <label for="title">Título</label>
+            <input type="text" name="title" id="title" value="{{task.title}}">
+        </div>
+        <div>
+            <label for="description">Descrição</label>
+            <input type="text" name="description" id="description" value="{{task.description}}">
+        </div>
+        <div>
+            <label for="deadline">Data final</label>
+            <input type="date" name="deadline" id="deadline" value="{{task.deadline}}">
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <div>
+        <a href="/task">Voltar</a>
+    </div>
+</div>
