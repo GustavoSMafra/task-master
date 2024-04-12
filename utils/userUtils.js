@@ -30,7 +30,7 @@ function autenticarUsuario(req, res, next) {
 
         });
     } else {
-        res.redirect('user/login');
+        res.redirect('/user/login');
     }
 }
 

@@ -36,6 +36,29 @@ const Task = db.define('Task', {
     }
 });
 
+Task.statusList = {
+    CREATED: {
+        code: 0,
+        label: 'Criado'
+    },
+    WORKING: {
+        code: 1,
+        label: 'Trabalhando'
+    },
+    PAUSED: {
+        code: 2,
+        label: 'Em espera'
+    },
+    PENDING: {
+        code: 3,
+        label: 'Pendente'
+    },
+    DONE: {
+        code: 4,
+        label: 'Concluído'
+    }
+};
+
 User.hasMany(Task, { foreignKey: 'userId' });
 Task.belongsTo(User, { foreignKey: 'userId' });
 

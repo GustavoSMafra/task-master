@@ -1,3 +1,4 @@
+const Category = require('../models/Category');
 const Task = require('../models/Task');
 
 module.exports = class TaskController {
@@ -10,15 +11,18 @@ module.exports = class TaskController {
     }
 
     static createTask(req, res) {
-        res.render('task/create');
+        const statusList = Task.statusList;
+        const categoryList = Category.findAll({raw: true});
+        res.render('task/create', {statusList: statusList, categoryList: categoryList});
     }
 
     static async updateTask(req, res) {
 
         const id = req.params.id;
         const task = await Task.findOne({where: {id: id}, raw: true});
-
-        res.render('task/update', {task: task});
+        const statusList = Task.statusList;
+        const categoryList = Category.findAll({raw: true});
+        res.render('task/update', {task: task, statusList: statusList, categoryList: categoryList});
     }
 
     static async createTaskSave(req, res) {
@@ -28,7 +32,7 @@ module.exports = class TaskController {
             deadline: req.body.deadline,
             categoryId: req.body.category,
             userId: req.user.id,
-            status: 1,
+            status: req.body.status,
         }
 
         await Task.create(task);
@@ -39,7 +43,7 @@ module.exports = class TaskController {
 
         const id = req.params.id;
 
-        const task = {
+        const taskData = {
             title: req.body.title,
             description: req.body.description,
             deadline: req.body.deadline,
@@ -60,13 +64,6 @@ module.exports = class TaskController {
     }
 
     static async changeStatus(req, res) {
-        const id = req.body.id;
 
-        const taskData = {
-            done: req.body.done === '0' ? true : false,
-        }
-
-        await Task.update(taskData, {where: {id: id}});
-        res.redirect('/task');
     }
 }

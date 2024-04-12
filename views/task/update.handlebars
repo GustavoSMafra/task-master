@@ -13,6 +13,17 @@
             <label for="deadline">Data final</label>
             <input type="date" name="deadline" id="deadline" value="{{task.deadline}}">
         </div>
+        
+        <div>
+            <label for="status">Status</label>
+            <select name="status" id="status">
+                {{#each statusList}}
+                    <option value="{{this.code}}" {{#eq this.code ../task.status}}selected{{/eq}}>
+                        {{this.label}}
+                    </option>
+                {{/each}}
+            </select>
+        </div>
         <button type="submit">Cadastrar</button>
     </form>
     <div>
