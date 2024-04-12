@@ -1,10 +1,17 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const cookieParser = require('cookie-parser');
+const helpers = require('handlebars-helpers')();
+
+const hbs = exphbs.create({
+    helpers: helpers,
+});
+
+console.log(hbs.helpers.log)
 
 const app = express();
 app.use(cookieParser());
-app.engine('handlebars', exphbs.engine());
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 app.use(
