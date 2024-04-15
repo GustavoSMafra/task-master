@@ -34,6 +34,17 @@ function autenticarUsuario(req, res, next) {
     }
 }
 
+function semUsuario(req, res, next) {
+    const token = req.cookies.authToken;
+
+    if (token) {
+        res.redirect('/');
+    } else {
+        next();
+    }
+}
+
 module.exports = {
-    autenticarUsuario
+    autenticarUsuario,
+    semUsuario
 };
