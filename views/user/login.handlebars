@@ -1,4 +1,8 @@
-<div>
+<div class="login-form">
+    <div class="action-login">
+        <a class="action-off" href="/user/create">Cadastrar-se</a>
+        <a class="action-on" href="/user/login">Login</a>
+    </div>
     <form action="/user/login" method="post">
         <div class="form-data">
             <label for="username">Username</label>
@@ -8,7 +12,7 @@
             <label for="password">Senha</label>
             <input type="password" name="password" id="password">
         </div>
-        <button type="submit">Entrar</button>
+        <button class="btn-login" type="submit">Entrar</button>
     </form>
     {{#if errorMessage}}
         <p>{{errorMessage}}</p>
