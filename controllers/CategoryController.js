@@ -4,7 +4,7 @@ module.exports = class CategoryController {
     
     static async listCategory(req, res) {
 
-        const categoryList = await Category.findAll({raw: true});
+        const categoryList = await Category.findAll({raw: true, where: {userId: req.user.id,}});
 
         res.render('category/list', {categoryList});
     }
@@ -64,6 +64,7 @@ module.exports = class CategoryController {
             name: req.body.name,
             color: req.body.color,
             icon: req.body.icon,
+            userId: req.user.id,
         }
 
         await Category.create(categoryData);
@@ -77,6 +78,7 @@ module.exports = class CategoryController {
             name: req.body.name,
             color: req.body.color,
             icon: req.body.icon,
+            userId: req.user.id,
         }
 
         await Category.update(categoryData, {where: {id: id}});

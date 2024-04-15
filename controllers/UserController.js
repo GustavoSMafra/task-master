@@ -12,11 +12,15 @@ module.exports = class UserController {
     }
 
     static async createUserView(req, res) {
-        res.render('user/create');
+        res.render('user/create', {
+            layout: 'guest'
+        });
     }
 
     static async loginUserView(req, res) {
-        res.render('user/login');
+        res.render('user/login', {
+            layout: 'guest'
+        });
     }
 
     static async createUser(req, res) {
@@ -34,7 +38,7 @@ module.exports = class UserController {
                             password: encryptedPassword
                         }
                         await User.create(newUser);
-                        res.render('user/create');
+                        res.redirect('/user/login');
                     });
             }
         } else {
@@ -57,11 +61,17 @@ module.exports = class UserController {
                     res.cookie('authToken', token, options);
                     res.redirect('/');
                 } else {
-                    res.render('user/login', {errorMessage: "Credenciais incorretas!"});
+                    res.render('user/login', {
+                        errorMessage: "Credenciais incorretas!",
+                        layout: 'guest'
+                    });
                 }
             });
         } else {
-            res.render('user/login', {errorMessage: "Preencha todos os campos!"});
+            res.render('user/login', {
+                errorMessage: "Preencha todos os campos!",
+                layout: 'guest'
+            });
         }
     }
 }

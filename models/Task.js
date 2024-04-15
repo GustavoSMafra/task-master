@@ -13,7 +13,7 @@ const Task = db.define('Task', {
         require: true
     },
     deadline: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         require: true
     },
     status: {
