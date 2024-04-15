@@ -49,12 +49,8 @@ Task.statusList = {
         code: 2,
         label: 'Em espera'
     },
-    PENDING: {
-        code: 3,
-        label: 'Pendente'
-    },
     DONE: {
-        code: 4,
+        code: 3,
         label: 'Concluído'
     }
 };

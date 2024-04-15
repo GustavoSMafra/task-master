@@ -5,9 +5,12 @@ module.exports = class TaskController {
     
     static async listTasks(req, res) {
 
-        const taskList = await Task.findAll({raw: true});
+        const taskListCreated = await Task.findAll({raw: true, where: {status: 0}});
+        const taskListWorking = await Task.findAll({raw: true, where: {status: 1}});
+        const taskListPaused = await Task.findAll({raw: true, where: {status: 2}});
+        const taskListDone = await Task.findAll({raw: true, where: {status: 3}});
 
-        res.render('task/list', {taskList});
+        res.render('task/list', {taskListCreated, taskListWorking, taskListPaused, taskListDone});
     }
 
     static createTask(req, res) {
