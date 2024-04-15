@@ -1,20 +1,20 @@
-<div>
+<div class="form-container">
     <h1>Atualizar tarefa</h1>
     <form action="/task/update/{{task.id}}" method="post">
-        <div>
+        <div class="form-data">
             <label for="title">Título</label>
-            <input type="text" name="title" id="title" value="{{task.title}}">
+            <input class="input-title" type="text" name="title" id="title" value="{{task.title}}">
         </div>
-        <div>
+        <div class="form-data">
             <label for="description">Descrição</label>
-            <input type="text" name="description" id="description" value="{{task.description}}">
+            <textarea class="input-text" type="text" name="description" id="description" value="{{task.description}}">{{task.description}}</textarea>
         </div>
-        <div>
+        <div class="form-data">
             <label for="deadline">Data final</label>
             <input type="date" name="deadline" id="deadline" value="{{task.deadline}}">
         </div>
         
-        <div>
+        <div class="form-data">
             <label for="status">Status</label>
             <select name="status" id="status">
                 {{#each statusList}}
@@ -24,9 +24,11 @@
                 {{/each}}
             </select>
         </div>
-        <button type="submit">Cadastrar</button>
+        <div class="form-buttons">
+            <button class="btn-create" type="submit">Atualizar</button>
+        </div>
     </form>
-    <div>
+    <div class="btn-exit">
         <a href="/task">Voltar</a>
     </div>
 </div>

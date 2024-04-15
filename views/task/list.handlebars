@@ -1,13 +1,17 @@
-<div>
+<div class="list-container">
     <h1>Tarefas</h1>
-    <ul>
-        {{#each taskList}}
-            <li>
-                <a href="/task/update/{{this.id}}">{{this.title}}</a>
-            </li>
-        {{/each}}
-    </ul>
-    <div>
-        <a href="/task/create">Cadastrar tarefa</a>
+    <div class="list-box">
+        <ul>
+            {{#each taskList}}
+                <li>
+                    {{!-- ALTERAR COR PARA COR DA CATEGORIA --}}
+                    <p style="background-color: red;"></p>
+                    <a href="/task/update/{{this.id}}">{{this.title}}</a>
+                </li>
+            {{/each}}
+        </ul>
+        <div>
+            <a class="a-create" href="/task/create">Cadastrar</a>
+        </div>
     </div>
 </div>

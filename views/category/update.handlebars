@@ -1,21 +1,29 @@
-<div>
+<div class="form-container">
     <h1>Atualizar Categoria</h1>
     <form action="/category/update/{{category.id}}" method="post">
-        <div>
-            <label for="name"></label>
-            <input type="text" name="name" id="name" value="{{category.name}}">
+        <div class="form-data">
+            <label for="name">Nome</label>
+            <input class="input-title" type="text" name="name" id="name" value="{{category.name}}">
         </div>
-        <div>
-            <label for="color"></label>
-            <input type="text" name="color" id="color" value="{{category.color}}">
+        <div class="form-data">
+            <label for="color">Cor</label>
+            <input class="input-color" type="color" name="color" id="color" value="{{category.color}}">
         </div>
-        <div>
-            <label for="icon"></label>
-            <input type="text" name="icon" id="icon" value="{{category.icon}}">
+        <div class="form-data">
+            <label for="icon">Ícone</label>
+            <select name="icon" id="icon" class="selectpicker">
+                {{#each iconList}}
+                    <option value="{{this}}" data-icon="{{this}}"  {{#eq this ../category.icon}}selected{{/eq}}>
+                        {{this}}
+                    </option>
+                {{/each}}
+            </select>
         </div>
-        <button type="submit">Atualizar</button>
+        <div class="form-buttons">
+            <button class="btn-create" type="submit">Atualizar</button>
+        </div>
     </form>
-    <div>
+    <div class="btn-exit">
         <a href="/category">Voltar</a>
     </div>
 </div>

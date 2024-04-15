@@ -4,7 +4,7 @@ const { autenticarUsuario } = require('../utils/userUtils');
 
 const SiteController = require('../controllers/SiteController');
 
-router.get('/home', autenticarUsuario,  SiteController.homeView);
+router.get('/', autenticarUsuario,  SiteController.homeView);
 
 
 module.exports = router;

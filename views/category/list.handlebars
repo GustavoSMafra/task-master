@@ -1,13 +1,16 @@
-<div>
+<div class="list-container">
     <h1>Categorias</h1>
-    <ul>
-        {{#each categoryList}}
-            <li>
-                <a href="/category/update/{{this.id}}">{{this.name}}</a>
-            </li>
-        {{/each}}
-    </ul>
-    <div>
-        <a href="/category/create">Cadastrar categoria</a>
+    <div class="list-box">
+        <ul>
+            {{#each categoryList}}
+                <li>
+                    <p style="background-color: {{this.color}};"></p>
+                    <a href="/category/update/{{this.id}}"><i class="{{this.icon}}"></i> {{this.name}}</a>
+                </li>
+            {{/each}}
+        </ul>
+        <div>
+            <a class="a-create" href="/category/create">Cadastrar</a>
+        </div>
     </div>
 </div>

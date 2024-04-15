@@ -55,7 +55,7 @@ module.exports = class UserController {
                         expires: new Date(Date.now() + 3600000)
                     };
                     res.cookie('authToken', token, options);
-                    res.redirect('/home');
+                    res.redirect('/');
                 } else {
                     res.render('user/login', {errorMessage: "Credenciais incorretas!"});
                 }
