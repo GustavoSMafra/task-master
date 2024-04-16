@@ -12,13 +12,6 @@ const Checklist = db.define('Checklist', {
         type: DataTypes.BOOLEAN,
         require: true
     },
-    userId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'id'
-        }
-    },
     taskId: {
         type: DataTypes.INTEGER,
         references: {

@@ -27,12 +27,14 @@ const userRoutes = require("./routes/userRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const commentRoutes = require("./routes/commentRoutes");
+const checklistRoutes = require("./routes/checklistRoutes");
 
 app.use('/', siteRoutes);
 app.use('/user', userRoutes);
 app.use('/task', taskRoutes);
 app.use('/category', categoryRoutes);
 app.use('/comment', commentRoutes);
+app.use('/checklist', checklistRoutes);
 
 app.use(express.json());
 
