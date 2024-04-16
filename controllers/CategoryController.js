@@ -4,7 +4,7 @@ module.exports = class CategoryController {
     
     static async listCategory(req, res) {
 
-        const categoryList = await Category.findAll({raw: true, where: {userId: req.user.id,}});
+        const categoryList = await Category.findAll({raw: true, where: {userId: req.user.id}});
 
         res.render('category/list', {categoryList});
     }

@@ -15,9 +15,19 @@
         </div>
         <div class="form-data">
             <label for="status">Status</label>
-            <select name="status" id="status">
+            <select name="status" id="status" class="selectpicker">
                 {{#each statusList}}
                     <option value="{{this.code}}">{{this.label}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-data"> 
+            <label for="category">Categoria</label>
+            <select name="category" id="category" class="selectpicker">
+                {{#each categoryList}}
+                    <option value="{{this.id}}" data-icon="{{this.icon}}">
+                        {{this.name}}
+                    </option>
                 {{/each}}
             </select>
         </div>

@@ -4,10 +4,12 @@
         <div class="list-box">
             <h3>Criadas</h3>
             <ul>
-                {{#each taskListCreated}}
+                {{#each taskListCreatedArray}}
                     <li>
-                        {{!-- ALTERAR COR PARA COR DA CATEGORIA --}}
-                        <p style="background-color: red;"></p>
+                        <div class="task-category-label">
+                            <i class="{{this.Category.categoryIcon}}"></i>
+                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                        </div>
                         <a href="/task/update/{{this.id}}">{{this.title}}</a>
                     </li>
                 {{/each}}
@@ -16,10 +18,12 @@
         <div class="list-box">
             <h3>Fazendo</h3>
             <ul>
-                {{#each taskListWorking}}
+                {{#each taskListWorkingArray}}
                     <li>
-                        {{!-- ALTERAR COR PARA COR DA CATEGORIA --}}
-                        <p style="background-color: red;"></p>
+                        <div class="task-category-label">
+                            <i class="{{this.Category.categoryIcon}}"></i>
+                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                        </div>
                         <a href="/task/update/{{this.id}}">{{this.title}}</a>
                     </li>
                 {{/each}}
@@ -28,10 +32,12 @@
         <div class="list-box">
             <h3>Em espera</h3>
             <ul>
-                {{#each taskListPaused}}
+                {{#each taskListPausedArray}}
                     <li>
-                        {{!-- ALTERAR COR PARA COR DA CATEGORIA --}}
-                        <p style="background-color: red;"></p>
+                        <div class="task-category-label">
+                            <i class="{{this.Category.categoryIcon}}"></i>
+                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                        </div>
                         <a href="/task/update/{{this.id}}">{{this.title}}</a>
                     </li>
                 {{/each}}
@@ -40,10 +46,12 @@
         <div class="list-box">
             <h3>Finalizadas</h3>
             <ul>
-                {{#each taskListDone}}
+                {{#each taskListDoneArray}}
                     <li>
-                        {{!-- ALTERAR COR PARA COR DA CATEGORIA --}}
-                        <p style="background-color: red;"></p>
+                        <div class="task-category-label">
+                            <i class="{{this.Category.categoryIcon}}"></i>
+                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                        </div>
                         <a href="/task/update/{{this.id}}">{{this.title}}</a>
                     </li>
                 {{/each}}
