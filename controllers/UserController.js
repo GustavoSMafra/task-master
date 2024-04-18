@@ -74,4 +74,9 @@ module.exports = class UserController {
             });
         }
     }
+
+    static logoutUser(req, res) {
+        res.clearCookie('authToken');
+        res.redirect('/user/login');
+    }
 }
