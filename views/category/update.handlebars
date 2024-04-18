@@ -10,14 +10,85 @@
             <input class="input-color" type="color" name="color" id="color" value="{{category.color}}">
         </div>
         <div class="form-data">
-            <label for="icon">Ícone</label>
-            <select name="icon" id="icon" class="selectpicker">
-                {{#each iconList}}
-                    <option value="{{this}}" data-icon="{{this}}"  {{#eq this ../category.icon}}selected{{/eq}}>
-                        {{this}}
-                    </option>
-                {{/each}}
-            </select>
+            <label for="color">Ícone</label>
+            <input type="text" name="icon" id="icon" value="{{category.icon}}" hidden>
+            <div class="relative inline-block w-full text-left mb-4">
+                <div>
+                    <button type="button" class="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        id="menu-button" aria-expanded="true" aria-haspopup="true" onclick="toggleMenu()">
+                        {{#if category.icon}}
+                            <span id="input-value"><i class="{{category.icon}}"></i> - {{category.icon}}</span>
+                        {{else}}
+                            <span id="input-value">Selecione uma opção</span>
+                        {{/if}}
+                    </button>
+                </div>
+
+                <div id="dropdown-menu" class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-book', '- bi bi-book')">
+                            <i class="bi bi-book mr-2"></i>
+                            - bi bi-book
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-bookmark', '- bi bi-bookmark')">
+                            <i class="bi bi-bookmark mr-2"></i>
+                            - bi bi-bookmark
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-cart', '- bi bi-cart')">
+                            <i class="bi bi-cart mr-2"></i>
+                           - bi bi-cart
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-pin', '- bi bi-pin')">
+                            <i class="bi bi-pin mr-2"></i>
+                            - bi bi-pin
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-briefcase', '- bi bi-briefcase')">
+                            <i class="bi bi-briefcase mr-2"></i>
+                            - bi bi-briefcase
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-capsule', '- bi bi-capsule')">
+                            <i class="bi bi-capsule mr-2"></i>
+                            - bi bi-capsule
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-heart', '- bi bi-heart')">
+                            <i class="bi bi-heart mr-2"></i>
+                            - bi bi-heart
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-fuel-pump', '- bi bi-fuel-pump')">
+                            <i class="bi bi-fuel-pump mr-2"></i>
+                            - bi bi-fuel-pump
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-cash-coin', '- bi bi-cash-coin')">
+                            <i class="bi bi-cash-coin mr-2"></i>
+                            - bi bi-cash-coin
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-house', '- bi bi-house')">
+                            <i class="bi bi-house mr-2"></i>
+                            - bi bi-house
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-airplane', '- bi bi-airplane')">
+                            <i class="bi bi-airplane mr-2"></i>
+                            - bi bi-airplane
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-cake2', '- bi bi-cake2')">
+                            <i class="bi bi-cake2 mr-2"></i>
+                            - bi bi-cake2
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-calendar', '- bi bi-calendar')">
+                            <i class="bi bi-calendar mr-2"></i>
+                            - bi bi-calendar
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-exclamation-octagon', '- bi bi-exclamation-octagon')">
+                            <i class="bi bi-exclamation-octagon mr-2"></i>
+                            - bi bi-exclamation-octagon
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-mortarboard', '- bi bi-mortarboard ')">
+                            <i class="bi bi-mortarboard mr-2"></i>
+                            - bi bi-mortarboard 
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form-buttons">
             <button class="btn-create" type="submit">Atualizar</button>
@@ -27,3 +98,21 @@
         <a href="/category">Voltar</a>
     </div>
 </div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('dropdown-menu');
+        menu.classList.toggle('hidden');
+    }
+
+    function selectOption(iconClass, optionName) {
+        const inputValueHidden = document.getElementById('icon');
+        inputValueHidden.value = iconClass;
+
+        const inputValue = document.getElementById('input-value');
+        inputValue.innerHTML = `<i class="${iconClass} mr-2"></i>${optionName}`;
+
+        const menu = document.getElementById('dropdown-menu');
+        menu.classList.add('hidden');
+    }
+</script>
