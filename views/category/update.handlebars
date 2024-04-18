@@ -1,6 +1,7 @@
 <div class="form-container">
     <h1>Atualizar Categoria</h1>
     <form action="/category/update/{{category.id}}" method="post">
+        <input type="hidden" name="_method" value="PUT">
         <div class="form-data">
             <label for="name">Nome</label>
             <input class="input-title" type="text" name="name" id="name" value="{{category.name}}">

@@ -5,7 +5,7 @@ const { autenticarUsuario } = require('../utils/userUtils');
 const CommentController = require('../controllers/CommentController');
 
 router.post('/create', autenticarUsuario, CommentController.createCommentSave);
-router.post('/update/:id', autenticarUsuario, CommentController.updateCommentSave);
-router.post('/delete', autenticarUsuario, CommentController.deleteComment);
+router.put('/update/:id', autenticarUsuario, CommentController.updateCommentSave);
+router.delete('/delete', autenticarUsuario, CommentController.deleteComment);
 
 module.exports = router;

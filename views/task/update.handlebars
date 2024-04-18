@@ -1,6 +1,7 @@
 <div class="form-container">
     <h1>Atualizar tarefa</h1>
     <form action="/task/update/{{task.id}}" method="post">
+        <input type="hidden" name="_method" value="PUT">
         <div class="form-data">
             <label for="title">Título</label>
             <input class="input-title" type="text" name="title" id="title" value="{{task.title}}">

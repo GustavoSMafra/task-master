@@ -1,24 +1,25 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 const helpers = require('handlebars-helpers')();
 
 const hbs = exphbs.create({
     helpers: helpers,
 });
 
-console.log(hbs.helpers.log)
-
 const app = express();
 app.use(cookieParser());
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
-app.use(
-    express.urlencoded({
-        extended: true
-    })
-);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride((req, res) => {
+    return req.body._method;
+}));
 
 const conn = require("./db/conn");
 
@@ -35,8 +36,6 @@ app.use('/task', taskRoutes);
 app.use('/category', categoryRoutes);
 app.use('/comment', commentRoutes);
 app.use('/checklist', checklistRoutes);
-
-app.use(express.json());
 
 conn.sync().then(() => {
     app.listen(3000);

@@ -5,8 +5,8 @@ module.exports = class ChecklistController {
     static async createChecklistSave(req, res) {
         const checklistData = {
             name: req.body.name,
-            color: req.body.color,
-            icon: req.body.icon,
+            done: req.body.done == 'on' ? true : false,
+            taskId: req.body.taskId,
         }
 
         await Checklist.create(checklistData);
@@ -18,13 +18,11 @@ module.exports = class ChecklistController {
         const id = req.params.id;
         const checklistData = {
             name: req.body.name,
-            color: req.body.color,
-            icon: req.body.icon,
+            done: req.body.done == 'on' ? true : false,
+            taskId: req.body.taskId,
         }
 
         await Checklist.update(checklistData, {where: {id: id}});
-
-        res.redirect('/checklist');
     }
 
     static async deleteChecklist(req, res) {
@@ -34,6 +32,11 @@ module.exports = class ChecklistController {
     }
 
     static async changeStatus(req, res) {
+        const id = req.params.id;
+        const checklistData = {
+            done: req.body.done == 'on' ? true : false,
+        }
 
+        await Checklist.update(checklistData, {where: {id: id}});
     }
 }
