@@ -1,29 +1,32 @@
-<div class="form-container">
-    <h1>Criar tarefas</h1>
-    <form action="/task/create" method="post">
-        <div class="form-data">
-            <label for="title">Título</label>
-            <input class="input-title" type="text" name="title" id="title">
+<div class="flex flex-col w-80 max-w-lg h-full items-center">
+    <h1 class="text-2xl font-bold">Criar Tarefas</h1>
+    <form action="/task/create" method="post" class="flex flex-col w-full h-5/6 justify-evenly">
+        <div class="space-y-2">
+            <label for="title" class="block text-sm font-medium">Título</label>
+            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="text" name="title" id="title">
         </div>
-        <div class="form-data">
-            <label for="description">Descrição</label>
-            <textarea class="input-text" type="text" name="description" id="description"></textarea>
+        <div class="space-y-2">
+            <label for="description" class="block text-sm font-medium">Descrição</label>
+            <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md" name="description" id="description"></textarea>
         </div>
-        <div class="form-data">
-            <label for="deadline">Data final</label>
-            <input type="date" name="deadline" id="deadline">
+        <div class="space-y-2">
+            <label for="deadline" class="block text-sm font-medium">Data final</label>
+            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="date" name="deadline" id="deadline">
         </div>
-        <div class="form-data">
-            <label for="status">Status</label>
-            <select name="status" id="status" class="selectpicker">
+        <div class="space-y-2">
+            <label for="status" class="block text-sm font-medium">Status</label>
+            <select class="w-full px-3 py-2 border border-gray-300 rounded-md" name="status" id="status">
                 {{#each statusList}}
                     <option value="{{this.code}}">{{this.label}}</option>
                 {{/each}}
             </select>
         </div>
-        <div class="form-data"> 
-            <label for="category">Categoria</label>
-            <select name="category" id="category" class="selectpicker">
+        <div>
+
+        </div>
+        <div class="space-y-2">
+            <label for="category" class="block text-sm font-medium">Categoria</label>
+            <select class="w-full px-3 py-2 border border-gray-300 rounded-md" name="category" id="category">
                 {{#each categoryList}}
                     <option value="{{this.id}}" data-icon="{{this.icon}}">
                         {{this.name}}
@@ -31,11 +34,118 @@
                 {{/each}}
             </select>
         </div>
-        <div class="form-buttons">
-            <button class="btn-create" type="submit">Cadastrar</button>
+        <div class="flex flex-col items-start space-x-4">
+            <input type="hidden" name="checklistArray" id="checklistArray" value="">
+            <div>
+                <label for="category" class="block text-sm font-medium">Checklist</label>
+            </div>
+            <div id="checklistItems" class="w-full mb-4 space-y-2"></div>
+            <div class="flex items-center space-x-4">
+                <input type="checkbox" id="checklistDone" class="form-checkbox h-10 w-10 text-blue-500 border-gray-300 rounded">
+                <input type="text" id="checklistName" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded-md"  onclick="addItemChecklist()">Adicionar</button>
+            </div>
+            <div id="checklistNameError" class="hidden text-red-500">O título não pode estar vazio.</div>
+        </div>
+        <div class="text-center mt-10">
+            <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md">Cadastrar</button>
         </div>
     </form>
-    <div class="btn-exit">
-        <a href="/task">Voltar</a>
+    <div class="mt-4">
+        <a href="/task" class="text-blue-500 hover:underline">Voltar</a>
     </div>
 </div>
+
+<script>
+    function addItemChecklist() {
+        const inputDone = document.getElementById('checklistDone').checked;
+        const inputName = document.getElementById('checklistName').value.trim();
+
+        const checklistNameError = document.getElementById('checklistNameError');
+        if (inputName === '') {
+            checklistNameError.classList.remove('hidden');
+            return;
+        } else {
+            checklistNameError.classList.add('hidden');
+        }
+
+        const newItem = {
+            "name": inputName,
+            "done": inputDone,
+            "updated": false
+        };
+
+        const checklist = document.getElementById('checklistArray');
+        let checklistArray = checklist.value ? JSON.parse(checklist.value) : [];
+        checklistArray.push(newItem);
+        checklist.value = JSON.stringify(checklistArray);
+
+        document.getElementById('checklistName').value = '';
+        document.getElementById('checklistDone').checked = false;
+
+        addChecklistItemToUI(newItem, checklistArray.length - 1);
+    }
+
+    function addChecklistItemToUI(item, index) {
+        const checklistItems = document.getElementById('checklistItems');
+
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('p-2', 'border', 'border-gray-300', 'rounded-md', 'flex', 'items-center', 'space-x-2');
+        itemDiv.setAttribute('data-index', index);
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = item.done;
+        checkbox.classList.add('form-checkbox', 'h-4', 'w-4');
+        checkbox.addEventListener('change', (event) => {
+            updateChecklistItemStatus(index, event.target.checked);
+        });
+
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = item.name;
+
+        const removeButton = document.createElement('button');
+        removeButton.innerHTML = '<i class="bi bi-trash"></i>';
+        removeButton.classList.add('ml-2', 'text-red-500');
+        removeButton.addEventListener('click', () => {
+            removeChecklistItem(index);
+        });
+
+        itemDiv.appendChild(checkbox);
+        itemDiv.appendChild(nameSpan);
+        itemDiv.appendChild(removeButton);
+
+        checklistItems.appendChild(itemDiv);
+    }
+
+    function removeChecklistItem(index) {
+        const checklistArray = JSON.parse(document.getElementById('checklistArray').value);
+        checklistArray.splice(index, 1);
+
+        document.getElementById('checklistArray').value = JSON.stringify(checklistArray);
+
+        const checklistItems = document.getElementById('checklistItems');
+        const itemDiv = checklistItems.querySelector(`[data-index="${index}"]`);
+        if (itemDiv) {
+            checklistItems.removeChild(itemDiv);
+        }
+
+        updateChecklistIndexes();
+    }
+
+    function updateChecklistIndexes() {
+        const checklistItems = document.getElementById('checklistItems').children;
+        for (let i = 0; i < checklistItems.length; i++) {
+            checklistItems[i].setAttribute('data-index', i);
+        }
+    }
+
+    function updateChecklistItemStatus(index, done) {
+        const checklistArray = JSON.parse(document.getElementById('checklistArray').value);
+        checklistArray[index].done = done;
+
+        document.getElementById('checklistArray').value = JSON.stringify(checklistArray);
+
+        const itemDiv = document.querySelector(`[data-index="${index}"]`);
+    }
+</script>

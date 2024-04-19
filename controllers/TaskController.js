@@ -1,4 +1,5 @@
 const Category = require('../models/Category');
+const Checklist = require('../models/Checklist');
 const Task = require('../models/Task');
 
 module.exports = class TaskController {
@@ -76,7 +77,8 @@ module.exports = class TaskController {
         const task = await Task.findOne({where: {id: id}, raw: true});
         const statusList = Task.statusList;
         const categoryList = await Category.findAll({raw: true, where: {userId: req.user.id}});
-        res.render('task/update', {task: task, statusList: statusList, categoryList: categoryList});
+        const checklist = await Checklist.findAll({raw: true, where: {taskId: id}});
+        res.render('task/update', {task: task, statusList: statusList, categoryList: categoryList, checklist: checklist});
     }
 
     static async createTaskSave(req, res) {
@@ -89,7 +91,16 @@ module.exports = class TaskController {
             status: req.body.status,
         }
 
-        await Task.create(task);
+        const createdTask = await Task.create(task);
+
+        const checklistArray = req.body.checklistArray ? JSON.parse(req.body.checklistArray) : [];
+        if (checklistArray && checklistArray.length > 0) {
+            for (const item of checklistArray) {
+                item.taskId = createdTask.id;
+                await Checklist.create(item);
+            }
+        }
+
         res.redirect('/task');
     }
 
