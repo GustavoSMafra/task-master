@@ -1,18 +1,18 @@
-<div class="login-form">
-    <div class="action-login">
-        <a class="action-off" href="/user/create">Cadastrar-se</a>
-        <a class="action-on" href="/user/login">Login</a>
+<div style="background-color: #8354D033;" class="flex flex-col w-3/6 h-3/6 items-center rounded-2xl">
+    <div class="flex flex-row w-full h-20 items-center justify-evenly">
+        <a style="background-color: #8354D033; color: #8354D0;" class="px-10 py-3 w-5/12 text-center font-medium rounded-2xl" href="/user/create">Cadastrar-se</a>
+        <a style="background-color: #8354D0;" class="px-10 py-3 w-5/12 text-center font-medium text-white rounded-2xl" href="/user/login">Login</a>
     </div>
-    <form action="/user/login" method="post">
+    <form class="flex flex-col w-5/6 h-4/6 items-center justify-evenly" action="/user/login" method="post">
         <div class="form-data">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
+            <label style="color: #4B4B4B;" class="block text-sm font-medium" for="username">Username</label>
+            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="text" name="username" id="username">
         </div>
         <div class="form-data">
-            <label for="password">Senha</label>
-            <input type="password" name="password" id="password">
+            <label style="color: #4B4B4B;" class="block text-sm font-medium" for="password">Senha</label>
+            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="password" name="password" id="password">
         </div>
-        <button class="btn-login" type="submit">Entrar</button>
+        <button style="background-color: #8354D0;"  class="w-2/4 px-3 py-2 rounded-md text-white mt-5 ml-auto" type="submit">Entrar</button>
     </form>
     {{#if errorMessage}}
         <p>{{errorMessage}}</p>

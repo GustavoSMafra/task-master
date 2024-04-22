@@ -1,65 +1,60 @@
-<div class="list-container">
-    <h1>Tarefas</h1>
-    <div class="task-board">
-        <div class="list-box">
-            <h3>Criadas</h3>
-            <ul>
+<div class="flex flex-col w-full h-full items-center justify-start">
+    <div style="height: 90%;" class="flex w-11/12 items-center justify-center overflow-x-auto pt-5">
+        <div class="flex flex-col items-center h-full w-96">
+            <h3 class="text-start text-black text-xl font-medium mr-auto">Criadas</h3>
+            <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListCreatedArray}}
-                    <li>
-                        <div class="task-category-label">
-                            <i class="{{this.Category.categoryIcon}}"></i>
-                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                    <li style="background-color: white;" class="flex flex-col items-start h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                        <div style="background-color: {{this.Category.categoryColor}};" class="w-3/6 rounded-lg p-1 text-sm text-white font-normal">
+                            <i class="{{this.Category.categoryIcon}}"></i> {{this.Category.categoryName}}
                         </div>
-                        <a href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <a class="pt-3 font-normal text-lg" href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <small class="mt-auto ml-auto font-light text-black text-xs">{{this.deadline}}</small>
                     </li>
                 {{/each}}
             </ul>
         </div>
-        <div class="list-box">
-            <h3>Fazendo</h3>
-            <ul>
+        <div class="flex flex-col items-center h-full w-96">
+            <h3 class="text-start text-black text-xl font-medium mr-auto">Fazendo</h3>
+            <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListWorkingArray}}
-                    <li>
-                        <div class="task-category-label">
-                            <i class="{{this.Category.categoryIcon}}"></i>
-                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                    <li style="background-color: white;" class="flex flex-col items-start h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                        <div style="background-color: {{this.Category.categoryColor}};" class="w-3/6 rounded-lg p-1 text-sm text-white font-normal">
+                            <i class="{{this.Category.categoryIcon}}"></i> {{this.Category.categoryName}}
                         </div>
-                        <a href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <a class="pt-3 font-normal text-lg" href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <small class="mt-auto ml-auto font-light text-black text-xs">{{this.deadline}}</small>
                     </li>
                 {{/each}}
             </ul>
         </div>
-        <div class="list-box">
-            <h3>Em espera</h3>
-            <ul>
+        <div class="flex flex-col items-center h-full w-96">
+            <h3 class="text-start text-black text-xl font-medium mr-auto">Em pausa</h3>
+            <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListPausedArray}}
-                    <li>
-                        <div class="task-category-label">
-                            <i class="{{this.Category.categoryIcon}}"></i>
-                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                    <li style="background-color: white;" class="flex flex-col items-start h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                        <div style="background-color: {{this.Category.categoryColor}};" class="w-3/6 rounded-lg p-1 text-sm text-white font-normal">
+                            <i class="{{this.Category.categoryIcon}}"></i> {{this.Category.categoryName}}
                         </div>
-                        <a href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <a class="pt-3 font-normal text-lg" href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <small class="mt-auto ml-auto font-light text-black text-xs">{{this.deadline}}</small>
                     </li>
                 {{/each}}
             </ul>
         </div>
-        <div class="list-box">
-            <h3>Finalizadas</h3>
-            <ul>
+        <div class="flex flex-col items-center h-full w-96">
+            <h3 class="text-start text-black text-xl font-medium mr-auto">Finalizado</h3>
+            <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListDoneArray}}
-                    <li>
-                        <div class="task-category-label">
-                            <i class="{{this.Category.categoryIcon}}"></i>
-                            <p style="background-color: {{this.Category.categoryColor}}; margin: 0; margin-left: 10px;"></p>
+                    <li style="background-color: white;" class="flex flex-col items-start h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                        <div style="background-color: {{this.Category.categoryColor}};" class="w-3/6 rounded-lg p-1 text-sm text-white font-normal">
+                            <i class="{{this.Category.categoryIcon}}"></i> {{this.Category.categoryName}}
                         </div>
-                        <a href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <a class="pt-3 font-normal text-lg" href="/task/update/{{this.id}}">{{this.title}}</a>
+                        <small class="mt-auto ml-auto font-light text-black text-xs">{{this.deadline}}</small>
                     </li>
                 {{/each}}
             </ul>
         </div>
     </div>
-    <div>
-        <a class="a-create" href="/task/create">Cadastrar</a>
-    </div>
-
 </div>
