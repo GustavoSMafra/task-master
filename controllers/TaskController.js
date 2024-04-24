@@ -11,9 +11,9 @@ module.exports = class TaskController {
             include: {
                 model: Category,
                 attributes: [
-                    ['name', 'categoryName'], // Alias para 'name'
-                    ['color', 'categoryColor'], // Alias para 'color'
-                    ['icon', 'categoryIcon'] // Alias para 'icon'
+                    ['name', 'categoryName'],
+                    ['color', 'categoryColor'],
+                    ['icon', 'categoryIcon']
                 ]
             },
         });
@@ -78,6 +78,7 @@ module.exports = class TaskController {
         const statusList = Task.statusList;
         const categoryList = await Category.findAll({raw: true, where: {userId: req.user.id}});
         const checklist = await Checklist.findAll({raw: true, where: {taskId: id}});
+
         res.render('task/update', {task: task, statusList: statusList, categoryList: categoryList, checklist: checklist});
     }
 
@@ -123,9 +124,31 @@ module.exports = class TaskController {
     }
 
     static async deleteTask(req, res) {
-        const id = req.body.id;
-        await Task.destroy({where: {id: id}});
-        res.redirect('/task');
+        const id = req.params.id;
+        try {
+            const deletedRows = await Task.destroy({where: {id: id}});
+    
+            if (deletedRows > 0) {
+                res.status(200).json({
+                    success: true,
+                    message: `Tarefa ${id} deletado com sucesso`,
+                    data: {}
+                });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: `Tarefa ${id} não encontrado`,
+                    data: {}
+                    
+                });
+            }
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: `Erro ao deletar o Tarefa ${id}: ${error.message}`,
+                data: {}
+            });
+        }
     }
 
     static async changeStatus(req, res) {
