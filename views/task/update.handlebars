@@ -1,70 +1,79 @@
-<div class="flex flex-col w-80 max-w-lg h-full items-center">
-    <h1 class="text-2xl font-bold">Atualizar Tarefas</h1>
-    <form action="/task/update/{{task.id}}" method="post" class="flex flex-col w-full h-5/6 justify-evenly">
+<div class="flex flex-col w-full h-full items-center justify-start">
+    <div class="flex flex-row w-5/6 justify-between items-center mt-7 h-1/12 mb-5">
+        <h1 style="color: #484848;" class="text-start text-3xl font-normal mr-auto">Atualizar Tarefa</h1>
+    </div>
+    <form action="/task/update/{{task.id}}" method="post" class="flex flex-col w-4/6 h-5/6 items-center">
         <input type="hidden" name="_method" value="PUT">
-        <div class="space-y-2">
-            <label for="title" class="block text-sm font-medium">Título</label>
-            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="text" name="title" id="title" value="{{task.title}}">
+        <div class="flex flex-row items-center w-full justify-start">
+            <div class="flex flex-col w-4/5 items-start justify-start h-24">
+                <label style="color: #4B4B4B;" class="text-xl ml-2" for="title">Título</label>
+                <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="text" name="title" id="title" value="{{task.title}}">
+            </div>
+            <div class="flex flex-col w-1/6 items-start justify-start h-24 ml-auto">
+                <label style="color: #4B4B4B;" class="text-xl ml-2" for="deadline">Data final</label>
+                <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="date" name="deadline" id="deadline" value="{{task.deadline}}">
+            </div>
         </div>
-        <div class="space-y-2">
-            <label for="description" class="block text-sm font-medium">Descrição</label>
+        <div class="flex flex-col w-full items-start justify-start h-24 mt-5">
+            <label style="color: #4B4B4B;" class="text-xl ml-2" for="deadline">Descrição</label>
             <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md" name="description" id="description" value="{{task.description}}">{{task.description}}</textarea>
         </div>
-        <div class="space-y-2">
-            <label for="deadline" class="block text-sm font-medium">Data final</label>
-            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="date" name="deadline" id="deadline" value="{{task.deadline}}">
-        </div>
-        <div class="space-y-2">
-            <label for="status" class="block text-sm font-medium">Status</label>
-            <select class="w-full px-3 py-2 border border-gray-300 rounded-md" name="status" id="status">
-                {{#each statusList}}
-                    <option value="{{this.code}}" {{#eq this.code ../task.status}}selected{{/eq}}>{{this.label}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div>
 
-        </div>
-        <div class="space-y-2">
-            <label for="category" class="block text-sm font-medium">Categoria</label>
-            <select class="w-full px-3 py-2 border border-gray-300 rounded-md" name="category" id="category">
-                {{#each categoryList}}
-                    <option value="{{this.id}}" data-icon="{{this.icon}}" {{#eq this.id ../task.categoryId}}selected{{/eq}}>
-                        {{this.name}}
-                    </option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="flex flex-col items-start space-x-4">
-            <input type="hidden" name="checklistArray" id="checklistArray" value="">
-            <div>
-                <label for="category" class="block text-sm font-medium">Checklist</label>
-            </div>
-            <div id="checklistItems" class="w-full mb-4 space-y-2">
-                {{#each checklist}}
-                    <div class="p-2 border border-gray-300 rounded-md flex items-center space-x-2" data-index="{{this.id}}">
-                        <input type="checkbox" class="form-checkbox h-4 w-4" {{#if this.done}}checked{{/if}} onclick="checkboxChangeStatus(event)">
-                        <span>{{this.name}}</span>
-                        <button type="button"  class="ml-2 text-red-500" data-index="{{this.id}}" onclick="removeChecklistItem({{this.id}})">
-                            <i class="bi bi-trash"></i>
+        <div class="flex flex-row items-start w-full justify-between mt-5">
+            <div class="flex flex-col items-center w-4/6 justify-start">
+                <div class="flex flex-col items-start w-full">
+                    <input type="hidden" name="checklistArray" id="checklistArray" value="">
+                    <div>
+                        <label for="category" style="color: #4B4B4B;" class="text-xl ml-3">Checklist</label>
+                    </div>
+                    <div class="flex items-center w-2/3">
+                        <input type="checkbox" id="checklistDone" class="form-checkbox h-10 w-10 text-blue-500 border-gray-300 rounded">
+                        <input type="text" id="checklistName" class="w-full px-3 py-2 border border-gray-300 rounded-md ml-5">
+                        <button type="button" style="background-color: #8354D0;" class="px-4 py-2 text-white rounded-md ml-5 w-36" onclick="addItemChecklist({{task.id}})">
+                            <i class="bi bi-plus-lg"></i>
                         </button>
                     </div>
-                {{/each}}
+                    <div id="checklistNameError" class="hidden text-red-500">O título não pode estar vazio.</div>
+                </div>
+                <div id="checklistItems" class="w-full overflow-y-auto max-h-44 scroll-bar-hidden mt-5">
+                    {{#each checklist}}
+                        <div class="p-2 border border-gray-300 rounded-md flex items-center" data-index="{{this.id}}">
+                            <input type="checkbox" class="form-checkbox h-6 w-6 text-blue-500 border-gray-300 rounded" {{#if this.done}}checked{{/if}} onclick="checkboxChangeStatus(event)">
+                            <input type="text" class="px-3 py-2 border border-gray-300 bg-white rounded-md ml-5 w-2/3" value="{{this.name}}" disabled>
+                            <button type="button" style="background-color: #EA2B2B;" class="px-4 py-2 text-white rounded-md ml-5 w-16" data-index="{{this.id}}" onclick="removeChecklistItem({{this.id}})">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    {{/each}}
+                </div>
             </div>
-            <div class="flex items-center space-x-4">
-                <input type="checkbox" id="checklistDone" class="form-checkbox h-10 w-10 text-blue-500 border-gray-300 rounded">
-                <input type="text" id="checklistName" class="w-full px-3 py-2 border border-gray-300 rounded-md">
-                <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded-md"  onclick="addItemChecklist({{task.id}})">Adicionar</button>
+            <div class="flex flex-row items-center w-2/6 justify-between">
+                <div class="flex flex-col w-4/12 items-start justify-start h-24">
+                    <label style="color: #4B4B4B;" class="text-xl ml-2" for="status">Status</label>
+                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md" name="status" id="status">
+                        {{#each statusList}}
+                            <option value="{{this.code}}" {{#eq this.code ../task.status}}selected{{/eq}}>{{this.label}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="flex flex-col w-7/12 items-start justify-start h-24">
+                    <label style="color: #4B4B4B;" class="text-xl ml-2" for="category">Categoria</label>
+                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md" name="category" id="category">
+                        {{#each categoryList}}
+                            <option value="{{this.id}}" data-icon="{{this.icon}}" {{#eq this.id ../task.categoryId}}selected{{/eq}}>
+                                {{this.name}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
             </div>
-            <div id="checklistNameError" class="hidden text-red-500">O título não pode estar vazio.</div>
         </div>
-        <div class="text-center mt-10">
-            <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md">Atualizar</button>
+        <div class="flex flex-row justify-end items-center w-full mt-auto mb-8">
+            <a style="color: #4B4B4B;" class="mr-10 text-xl font-normal" href="/">Voltar</a>
+            <button style="background-color: #EA2B2B;" class="px-10 py-3 w-64 text-center font-medium text-white rounded-lg" type="button" onclick="deleteTask({{task.id}})">Deletar</button>
+            <button style="background-color: #8354D0;" class="px-10 py-3 w-64 text-center font-medium text-white rounded-lg ml-5" type="submit">Atualizar</button>
         </div>
     </form>
-    <div class="mt-4">
-        <a href="/task" class="text-blue-500 hover:underline">Voltar</a>
-    </div>
 </div>
 
 
@@ -117,33 +126,40 @@
     }
 
     function addChecklistItemToUI(item, index) {
-        console.log(index)
         const checklistItems = document.getElementById('checklistItems');
 
         const itemDiv = document.createElement('div');
-        itemDiv.classList.add('p-2', 'border', 'border-gray-300', 'rounded-md', 'flex', 'items-center', 'space-x-2');
+        itemDiv.classList.add('p-2', 'border', 'border-gray-300', 'rounded-md', 'flex', 'items-center');
         itemDiv.setAttribute('data-index', index);
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
+        checkbox.classList.add('form-checkbox', 'h-6', 'w-6', 'text-blue-500', 'border-gray-300', 'rounded');
         checkbox.checked = item.done;
-        checkbox.classList.add('form-checkbox', 'h-4', 'w-4');
-        checkbox.addEventListener('change', (event) => {
-            updateChecklistItemStatus(index, event.target.checked);
+        checkbox.addEventListener('click', (event) => {
+            checkboxChangeStatus(event);
         });
 
-        const nameSpan = document.createElement('span');
-        nameSpan.textContent = item.name;
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.classList.add('px-3', 'py-2', 'border', 'border-gray-300', 'bg-white', 'rounded-md', 'ml-5', 'w-2/3');
+        nameInput.value = item.name;
+        nameInput.disabled = true;
 
         const removeButton = document.createElement('button');
-        removeButton.innerHTML = '<i class="bi bi-trash"></i>';
-        removeButton.classList.add('ml-2', 'text-red-500');
+        removeButton.type = 'button';
+        removeButton.style.backgroundColor = '#EA2B2B';
+        removeButton.classList.add('px-4', 'py-2', 'text-white', 'rounded-md', 'ml-5', 'w-16');
+        removeButton.setAttribute('data-index', index);
         removeButton.addEventListener('click', () => {
             removeChecklistItem(index);
         });
+        const trashIcon = document.createElement('i');
+        trashIcon.classList.add('bi', 'bi-trash');
+        removeButton.appendChild(trashIcon);
 
         itemDiv.appendChild(checkbox);
-        itemDiv.appendChild(nameSpan);
+        itemDiv.appendChild(nameInput);
         itemDiv.appendChild(removeButton);
         checklistItems.appendChild(itemDiv);
     }
@@ -162,6 +178,17 @@
             contentType: 'application/json',
             success: function () {
                 console.log("sucesso");
+            }
+        });
+    }
+
+    function deleteTask(index) {
+        $.ajax({
+            url: `/task/delete/${index}`,
+            type: 'DELETE',
+            contentType: 'application/json',
+            success: function () {
+                 window.location.href = '/';
             }
         });
     }

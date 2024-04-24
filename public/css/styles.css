@@ -29,11 +29,14 @@ main {
 }
 
 ul {
-    -ms-overflow-style: none; 
-    scrollbar-width: none;
     margin: 0 !important;
 }
 
-ul::-webkit-scrollbar {
+ul, .scroll-bar-hidden {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+ul::-webkit-scrollbar, .scroll-bar-hidden::-webkit-scrollbar {
     display: none;
 }
