@@ -2,65 +2,67 @@ const Category = require('../models/Category');
 const Checklist = require('../models/Checklist');
 const Task = require('../models/Task');
 
+const { formatTasksList } = require('../utils/taskUtils');
+
 module.exports = class TaskController {
     
     static async listTasks(req, res) {
 
         const taskListCreated = await Task.findAll({
             where: { status: 0, userId: req.user.id },
-            include: {
-                model: Category,
-                attributes: [
-                    ['name', 'categoryName'],
-                    ['color', 'categoryColor'],
-                    ['icon', 'categoryIcon']
-                ]
-            },
+            include: [
+                {
+                    model: Category,
+                },
+                {
+                    model: Checklist,
+                },
+            ]
         });
 
-        const taskListCreatedArray = taskListCreated.map(task => task.toJSON());
+        const taskListCreatedArray = formatTasksList(taskListCreated.map(task => task.toJSON()));
         
         const taskListWorking = await Task.findAll({
             where: { status: 1, userId: req.user.id },
-            include: {
-                model: Category,
-                attributes: [
-                    ['name', 'categoryName'], 
-                    ['color', 'categoryColor'],
-                    ['icon', 'categoryIcon'] 
-                ]
-            },
+            include: [
+                {
+                    model: Category,
+                },
+                {
+                    model: Checklist,
+                },
+            ]
         });
 
-        const taskListWorkingArray = taskListWorking.map(task => task.toJSON());
+        const taskListWorkingArray = formatTasksList(taskListWorking.map(task => task.toJSON()));
 
         const taskListPaused = await Task.findAll({
             where: { status: 2, userId: req.user.id },
-            include: {
-                model: Category,
-                attributes: [
-                    ['name', 'categoryName'],
-                    ['color', 'categoryColor'],
-                    ['icon', 'categoryIcon']
-                ]
-            },
+            include: [
+                {
+                    model: Category,
+                },
+                {
+                    model: Checklist,
+                },
+            ]
         });
 
-        const taskListPausedArray = taskListPaused.map(task => task.toJSON());
+        const taskListPausedArray = formatTasksList(taskListPaused.map(task => task.toJSON()));
 
         const taskListDone = await Task.findAll({
             where: { status: 3, userId: req.user.id },
-            include: {
-                model: Category,
-                attributes: [
-                    ['name', 'categoryName'],
-                    ['color', 'categoryColor'],
-                    ['icon', 'categoryIcon']
-                ]
-            },
+            include: [
+                {
+                    model: Category,
+                },
+                {
+                    model: Checklist,
+                },
+            ]
         });
 
-        const taskListDoneArray = taskListDone.map(task => task.toJSON());
+        const taskListDoneArray = formatTasksList(taskListDone.map(task => task.toJSON()));
 
         res.render('task/list', {taskListCreatedArray, taskListWorkingArray, taskListPausedArray, taskListDoneArray});
     }
