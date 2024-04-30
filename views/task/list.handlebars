@@ -5,12 +5,14 @@
             <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListCreatedArray}}
                     <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
-                        <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                            </div>
-                            <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                        <div class="flex flex-col items-start h-full w-full">
+                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
+                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                                </div>
+                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
+                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                            </a>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -31,7 +33,7 @@
                                     {{/each}}
                                 </div>
                             {{/if}}
-                        </a>    
+                        </div>
                     </li>
                 {{/each}}
             </ul>
@@ -41,12 +43,14 @@
             <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListWorkingArray}}
                     <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
-                        <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                            </div>
-                            <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                        <div class="flex flex-col items-start h-full w-full">
+                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
+                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                                </div>
+                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
+                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                            </a>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -67,7 +71,7 @@
                                     {{/each}}
                                 </div>
                             {{/if}}
-                        </a>    
+                        </div>
                     </li>
                 {{/each}}
             </ul>
@@ -77,12 +81,14 @@
             <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListPausedArray}}
                     <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
-                        <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                            </div>
-                            <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                        <div class="flex flex-col items-start h-full w-full">
+                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
+                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                                </div>
+                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
+                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                            </a>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -103,7 +109,7 @@
                                     {{/each}}
                                 </div>
                             {{/if}}
-                        </a>    
+                        </div>
                     </li>
                 {{/each}}
             </ul>
@@ -113,12 +119,14 @@
             <ul class="overflow-y-scroll max-h-full w-full">
                 {{#each taskListDoneArray}}
                     <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
-                        <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                            </div>
-                            <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                        <div class="flex flex-col items-start h-full w-full">
+                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
+                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                                </div>
+                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
+                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
+                            </a>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -139,7 +147,7 @@
                                     {{/each}}
                                 </div>
                             {{/if}}
-                        </a>    
+                        </div>
                     </li>
                 {{/each}}
             </ul>

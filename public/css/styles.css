@@ -47,3 +47,7 @@ ul::-webkit-scrollbar, .scroll-bar-hidden::-webkit-scrollbar {
 .tost-error {
     background-color: #EA2B2B !important;
 }
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
