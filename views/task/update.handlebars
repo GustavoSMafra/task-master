@@ -90,7 +90,13 @@
             contentType: 'application/json',
             success: function (response) {
                 if(!response.success){
-                    // Mensagem de erro
+                    Toastify({
+                        text: "Erro ao trocar de status!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-error",
+                    }).showToast();
                 }
             }
         });
@@ -124,8 +130,21 @@
                     document.getElementById('checklistName').value = '';
                     document.getElementById('checklistDone').checked = false;
                     addChecklistItemToUI(newItem, response.data.checklistId);
+                    Toastify({
+                        text: "Item adicionado com sucesso!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-success",
+                    }).showToast();
                 } else {
-                    // Mensagem erro
+                    Toastify({
+                        text: "Erro ao adicionar item!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-error",
+                    }).showToast();
                 }
             }
         });
@@ -154,7 +173,7 @@
 
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
-        removeButton.style.backgroundColor = '#EA2B2B';
+        removeButton.style.backgorund = '#EA2B2B';
         removeButton.classList.add('px-4', 'py-2', 'text-white', 'rounded-md', 'ml-5', 'w-16');
         removeButton.setAttribute('data-index', index);
         removeButton.addEventListener('click', () => {
@@ -183,8 +202,21 @@
                     if (itemDiv) {
                         checklistItems.removeChild(itemDiv);
                     }
+                    Toastify({
+                        text: "Item removido com sucesso!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-success",
+                    }).showToast();
                 } else {
-                    // Mensagem erro
+                    Toastify({
+                        text: "Erro ao remover item!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-error",
+                    }).showToast();
                 }
             }
         });
@@ -197,9 +229,24 @@
             contentType: 'application/json',
             success: function (response) {
                 if(response.success){
-                    window.location.href = '/';
+                    Toastify({
+                        text: "Tarefa deletada com sucesso!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-success",
+                    }).showToast();
+                    setTimeout(function() {
+                        window.location.href = '/';
+                    }, 1500);
                 } else {
-                    // Mensagem erro
+                    Toastify({
+                        text: "Erro ao deletar tarefa!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-error",
+                    }).showToast();
                 } 
             }
         });

@@ -32,3 +32,18 @@ ul, .scroll-bar-hidden {
 ul::-webkit-scrollbar, .scroll-bar-hidden::-webkit-scrollbar {
     display: none;
 }
+
+.tost-success {
+    margin-top: 125px;
+    background: none !important;
+    color: white !important;
+    border: 5px !important;
+}
+
+.tost-success {
+    background-color: #209e00 !important;
+}
+
+.tost-error {
+    background-color: #EA2B2B !important;
+}

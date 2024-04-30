@@ -129,9 +129,24 @@
             contentType: 'application/json',
             success: function (response) {
                 if(response.success){
-                    window.location.href = '/category/';
+                    Toastify({
+                        text: "Categoria deletada com sucesso!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-success",
+                    }).showToast();
+                    setTimeout(function() {
+                        window.location.href = '/category/';
+                    }, 1500);
                 } else {
-                    // Mensagem erro
+                    Toastify({
+                        text: "Erro ao deletar categoria!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-error",
+                    }).showToast();
                 } 
             }
         });
