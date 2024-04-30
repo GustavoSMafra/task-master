@@ -49,8 +49,30 @@ module.exports = class CategoryController {
     }
 
     static async deleteCategory(req, res) {
-        const id = req.body.id;
-        await Category.destroy({where: {id: id}});
-        res.redirect('/category');
+        const id = req.params.id;
+        try {
+            const deletedRows = await Category.destroy({where: {id: id}});
+    
+            if (deletedRows > 0) {
+                res.status(200).json({
+                    success: true,
+                    message: `Categoria ${id} deletada com sucesso`,
+                    data: {}
+                });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: `Categoria ${id} não encontrado`,
+                    data: {}
+                    
+                });
+            }
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: `Erro ao deletar a Categoria ${id}: ${error.message}`,
+                data: {}
+            });
+        }
     }
 }

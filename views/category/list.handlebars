@@ -7,8 +7,10 @@
         <ul class="overflow-y-scroll max-h-full w-full">
             {{#each categoryList}}
                 <li style="background-color: white;" class="flex flex-col items-start h-32 w-full mb-4 mt-4 rounded-lg p-3">
-                    <p style="background-color: {{this.color}};" class="w-28 h-3 rounded-lg"></p>
-                    <a class="mt-7 text-xl font-medium" href="/category/update/{{this.id}}"><i class="{{this.icon}}"></i> {{this.name}}</a>
+                    <a href="/category/update/{{this.id}}" class="w-full h-full">
+                        <p style="background-color: {{this.color}};" class="w-28 h-3 rounded-lg"></p>
+                        <p class="mt-5 ml-1 text-xl font-medium"><i class="{{this.icon}}"></i> {{this.name}}</p>
+                    </a>
                 </li>
             {{/each}}
         </ul>

@@ -13,8 +13,10 @@
                             <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
-                                    <small style="color: #3C3C3C;" class="font-light text-sm">
-                                        <i class="bi bi-check2-square mr-1"></i> {{this.doneChecklists}} / {{this.totalChecklists}}
+                                    <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
+                                        <i class="bi bi-check2-square mr-1"></i> 
+                                        <p id="checklist-complete">{{this.doneChecklists}}</p>
+                                        <p>/{{this.totalChecklists}}</p>
                                     </small>
                                     <button class="flex w-20 h-6 z-10 justify-end" onclick="expandChecklists({{this.id}}, event)" title="Expandir">
                                         <i id="icone_{{this.id}}" style="color: #3C3C3C;" class="bi bi-chevron-down"></i>
@@ -47,8 +49,10 @@
                             <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
-                                    <small style="color: #3C3C3C;" class="font-light text-sm">
-                                        <i class="bi bi-check2-square mr-1"></i> {{this.doneChecklists}} / {{this.totalChecklists}}
+                                    <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
+                                        <i class="bi bi-check2-square mr-1"></i> 
+                                        <p id="checklist-complete">{{this.doneChecklists}}</p>
+                                        <p>/{{this.totalChecklists}}</p>
                                     </small>
                                     <button class="flex w-20 h-6 z-10 justify-end" onclick="expandChecklists({{this.id}}, event)" title="Expandir">
                                         <i id="icone_{{this.id}}" style="color: #3C3C3C;" class="bi bi-chevron-down"></i>
@@ -81,8 +85,10 @@
                             <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
-                                    <small style="color: #3C3C3C;" class="font-light text-sm">
-                                        <i class="bi bi-check2-square mr-1"></i> {{this.doneChecklists}} / {{this.totalChecklists}}
+                                    <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
+                                        <i class="bi bi-check2-square mr-1"></i> 
+                                        <p id="checklist-complete">{{this.doneChecklists}}</p>
+                                        <p>/{{this.totalChecklists}}</p>
                                     </small>
                                     <button class="flex w-20 h-6 z-10 justify-end" onclick="expandChecklists({{this.id}}, event)" title="Expandir">
                                         <i id="icone_{{this.id}}" style="color: #3C3C3C;" class="bi bi-chevron-down"></i>
@@ -115,8 +121,10 @@
                             <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
-                                    <small style="color: #3C3C3C;" class="font-light text-sm">
-                                        <i class="bi bi-check2-square mr-1"></i> {{this.doneChecklists}} / {{this.totalChecklists}}
+                                    <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
+                                        <i class="bi bi-check2-square mr-1"></i> 
+                                        <p id="checklist-complete">{{this.doneChecklists}}</p>
+                                        <p>/{{this.totalChecklists}}</p>
                                     </small>
                                     <button class="flex w-20 h-6 z-10 justify-end" onclick="expandChecklists({{this.id}}, event)" title="Expandir">
                                         <i id="icone_{{this.id}}" style="color: #3C3C3C;" class="bi bi-chevron-down"></i>
@@ -173,8 +181,20 @@
                 done: event.target.checked
             }),
             contentType: 'application/json',
-            success: function () {
-                console.log("sucesso");
+            success: function (response) {
+                if(response.success){
+                    if (event.target.checked) {
+                        let doneChecklistsElement = event.target.closest('li').querySelector('#checklist-complete');
+                        let currentDoneChecklists = parseInt(doneChecklistsElement.innerText);
+                        doneChecklistsElement.innerText = currentDoneChecklists + 1;
+                    } else {
+                        let doneChecklistsElement = event.target.closest('li').querySelector('#checklist-complete');
+                        let currentDoneChecklists = parseInt(doneChecklistsElement.innerText);
+                        doneChecklistsElement.innerText = currentDoneChecklists - 1;
+                    }
+                } else {
+                    // Mensagem de erro
+                }
             }
         });
     }

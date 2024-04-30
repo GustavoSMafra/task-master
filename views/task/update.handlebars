@@ -88,8 +88,10 @@
                 done: event.target.checked
             }),
             contentType: 'application/json',
-            success: function () {
-                console.log("sucesso");
+            success: function (response) {
+                if(!response.success){
+                    // Mensagem de erro
+                }
             }
         });
     }
@@ -118,9 +120,13 @@
             contentType: 'application/json',
             data: JSON.stringify(newItem),
             success: function (response) {
-                document.getElementById('checklistName').value = '';
-                document.getElementById('checklistDone').checked = false;
-                addChecklistItemToUI(newItem, response.data.checklistId);
+                if(response.success){
+                    document.getElementById('checklistName').value = '';
+                    document.getElementById('checklistDone').checked = false;
+                    addChecklistItemToUI(newItem, response.data.checklistId);
+                } else {
+                    // Mensagem erro
+                }
             }
         });
     }
@@ -166,18 +172,20 @@
 
     function removeChecklistItem(index) {
 
-        const checklistItems = document.getElementById('checklistItems');
-        const itemDiv = checklistItems.querySelector(`[data-index="${index}"]`);
-        if (itemDiv) {
-            checklistItems.removeChild(itemDiv);
-        }
-
         $.ajax({
             url: `/checklist/delete/${index}`,
             type: 'DELETE',
             contentType: 'application/json',
-            success: function () {
-                console.log("sucesso");
+            success: function (response) {
+                if(response.success){
+                    const checklistItems = document.getElementById('checklistItems');
+                    const itemDiv = checklistItems.querySelector(`[data-index="${index}"]`);
+                    if (itemDiv) {
+                        checklistItems.removeChild(itemDiv);
+                    }
+                } else {
+                    // Mensagem erro
+                }
             }
         });
     }
@@ -187,8 +195,12 @@
             url: `/task/delete/${index}`,
             type: 'DELETE',
             contentType: 'application/json',
-            success: function () {
-                 window.location.href = '/';
+            success: function (response) {
+                if(response.success){
+                    window.location.href = '/';
+                } else {
+                    // Mensagem erro
+                } 
             }
         });
     }
