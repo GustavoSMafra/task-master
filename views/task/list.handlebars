@@ -2,17 +2,15 @@
     <div style="height: 90%;" class="flex w-11/12 items-center justify-center overflow-x-auto pt-5">
         <div class="flex flex-col items-center h-full w-96">
             <h3 style="color: #4B4B4B;" class="text-starttext-xl text-xl font-medium mr-auto">Criadas</h3>
-            <ul class="overflow-y-scroll max-h-full w-full">
+            <ul id="list-created" data-status="0" class="overflow-y-scroll h-full w-full" ondrop="drop(event)" ondragover="allowDrop(event)">
                 {{#each taskListCreatedArray}}
-                    <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                    <li data-task="{{this.id}}" draggable="true" ondragstart="drag(event)" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
                         <div class="flex flex-col items-start h-full w-full">
-                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                                </div>
-                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
-                            </a>
+                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                            </div>
+                            <a href="/task/update/{{this.id}}" class="pt-3 font-normal text-lg">{{this.title}}</a>
+                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -40,17 +38,15 @@
         </div>
         <div class="flex flex-col items-center h-full w-96">
             <h3 style="color: #4B4B4B;" class="text-starttext-xl text-xl font-medium mr-auto">Fazendo</h3>
-            <ul class="overflow-y-scroll max-h-full w-full">
+            <ul id="list-work" data-status="1" class="overflow-y-scroll h-full w-full" ondrop="drop(event)" ondragover="allowDrop(event)">
                 {{#each taskListWorkingArray}}
-                    <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                    <li data-task="{{this.id}}" draggable="true" ondragstart="drag(event)" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
                         <div class="flex flex-col items-start h-full w-full">
-                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                                </div>
-                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
-                            </a>
+                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                            </div>
+                            <a href="/task/update/{{this.id}}" class="pt-3 font-normal text-lg">{{this.title}}</a>
+                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -78,17 +74,15 @@
         </div>
         <div class="flex flex-col items-center h-full w-96">
             <h3 style="color: #4B4B4B;" class="text-starttext-xl text-xl font-medium mr-auto">Em pausa</h3>
-            <ul class="overflow-y-scroll max-h-full w-full">
+            <ul id="list-paused" data-status="2" class="overflow-y-scroll h-full w-full" ondrop="drop(event)" ondragover="allowDrop(event)">
                 {{#each taskListPausedArray}}
-                    <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                    <li data-task="{{this.id}}" draggable="true" ondragstart="drag(event)" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
                         <div class="flex flex-col items-start h-full w-full">
-                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                                </div>
-                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
-                            </a>
+                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                            </div>
+                            <a href="/task/update/{{this.id}}" class="pt-3 font-normal text-lg">{{this.title}}</a>
+                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -116,17 +110,15 @@
         </div>
         <div class="flex flex-col items-center h-full w-96">
             <h3 style="color: #4B4B4B;" class="text-starttext-xl text-xl font-medium mr-auto">Finalizado</h3>
-            <ul class="overflow-y-scroll max-h-full w-full">
+            <ul id="list-done" data-status="3" class="overflow-y-scroll h-full w-full" ondrop="drop(event)" ondragover="allowDrop(event)">
                 {{#each taskListDoneArray}}
-                    <li data-task="{{this.id}}" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
+                    <li data-task="{{this.id}}" draggable="true" ondragstart="drag(event)" style="background-color: white;" class="flex h-32 w-80 mb-4 mt-4 rounded-lg p-3">
                         <div class="flex flex-col items-start h-full w-full">
-                            <a class="flex flex-col items-start h-full w-full" href="/task/update/{{this.id}}">
-                                <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
-                                    <i class="{{this.category.icon}}"></i> {{this.category.name}}
-                                </div>
-                                <p class="pt-3 font-normal text-lg">{{this.title}}</p>
-                                <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
-                            </a>
+                            <div style="background-color: {{this.category.color}};" class="w-3/6 rounded-lg p-1 pl-2 text-sm text-white font-normal">
+                                <i class="{{this.category.icon}}"></i> {{this.category.name}}
+                            </div>
+                            <a href="/task/update/{{this.id}}" class="pt-3 font-normal text-lg">{{this.title}}</a>
+                            <small style="color: #9C9C9C;" class="mt-auto ml-auto font-lighttext-xs">{{this.deadline}}</small>
                             {{#if this.checklists}}
                                 <div class="flex flex-row justify-between w-full">
                                     <small class="flex flex-row" style="color: #3C3C3C;" class="font-light text-sm">
@@ -161,7 +153,7 @@
         event.preventDefault();
 
         let card = document.querySelector('[data-task="' + taskId + '"]');
-        var icone = document.getElementById('icone_' + taskId);
+        let icone = document.getElementById('icone_' + taskId);
 
         if (card) {
             if (card.classList.contains('h-32')) {
@@ -201,9 +193,59 @@
                         doneChecklistsElement.innerText = currentDoneChecklists - 1;
                     }
                 } else {
-                    // Mensagem de erro
+                    Toastify({
+                        text: "Erro ao atualizar item!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        className: "tost-error",
+                    }).showToast();
                 }
             }
         });
     }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drag(event) {
+        let taskId = event.target.getAttribute("data-task");
+        event.dataTransfer.setData("text", taskId);
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        let taskId = event.dataTransfer.getData("text");
+        let draggedElement = document.querySelector("[data-task='" + taskId + "']");
+        let dropzone = event.target;
+
+        while (dropzone.tagName.toLowerCase() !== 'ul' && dropzone.parentNode) {
+            dropzone = dropzone.parentNode;
+        }
+        if (dropzone.id !== draggedElement.parentNode?.id) {
+            $.ajax({
+                url: `/task/change-status/${taskId}`,
+                type: 'PUT',
+                data: JSON.stringify({
+                    status: parseInt(dropzone.getAttribute('data-status')),
+                }),
+                contentType: 'application/json',
+                success: function (response) {
+                    if(response.success){
+                        dropzone.appendChild(draggedElement);
+                    } else {
+                        Toastify({
+                            text: "Erro durante a troca de status!",
+                            duration: 3000,
+                            gravity: "top",
+                            position: "right",
+                            className: "tost-error",
+                        }).showToast();
+                    }
+                }
+            });
+        }
+    }
+
 </script>

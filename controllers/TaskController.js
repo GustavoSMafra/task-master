@@ -154,6 +154,33 @@ module.exports = class TaskController {
     }
 
     static async changeStatus(req, res) {
-
+        const id = req.params.id;
+        const taskData = {
+            status: req.body.status,
+        };
+    
+        try {
+            const [updatedRows] = await Task.update(taskData, { where: { id: id } });
+    
+            if (updatedRows > 0) {
+                res.status(200).json({
+                    success: true,
+                    message: `Tarefa ${id} atualizada com sucesso`,
+                    data: {}
+                });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: `Tarefa ${id} não encontrada`,
+                    data: {}
+                });
+            }
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: `Erro ao atualizar a tarefa ${id}: ${error.message}`,
+                data: {}
+            });
+        }
     }
 }
