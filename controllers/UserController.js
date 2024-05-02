@@ -49,24 +49,31 @@ module.exports = class UserController {
     static async loginUser(req, res) {
         if(req.body.username && req.body.password) {
             const user = await User.findOne({where: {username: req.body.username}, raw: true});
-            bcrypt.compare(req.body.password, user.password, function(err, result) {
-                if(result) {
-                    const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '1h' });
-                    const options = {
-                        httpOnly: true,
-                        secure: true,
-                        sameSite: 'strict',
-                        expires: new Date(Date.now() + 3600000)
-                    };
-                    res.cookie('authToken', token, options);
-                    res.redirect('/');
-                } else {
-                    res.render('user/login', {
-                        errorMessage: "Credenciais incorretas!",
-                        layout: 'guest'
-                    });
-                }
-            });
+            if(user){
+                bcrypt.compare(req.body.password, user.password, function(err, result) {
+                    if(result) {
+                        const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '1h' });
+                        const options = {
+                            httpOnly: true,
+                            secure: true,
+                            sameSite: 'strict',
+                            expires: new Date(Date.now() + 3600000)
+                        };
+                        res.cookie('authToken', token, options);
+                        res.redirect('/');
+                    } else {
+                        res.render('user/login', {
+                            errorMessage: "Credenciais incorretas!",
+                            layout: 'guest'
+                        });
+                    }
+                });
+            } else {
+                res.render('user/login', {
+                    errorMessage: "Usuário não encontrado!",
+                    layout: 'guest'
+                });
+            }
         } else {
             res.render('user/login', {
                 errorMessage: "Preencha todos os campos!",
