@@ -22,6 +22,7 @@ function autenticarUsuario(req, res, next) {
 
             if(user) {
                 req.user = user;
+                res.locals.user = req.user;
                 next();
             } else {
                 res.clearCookie('authToken');
