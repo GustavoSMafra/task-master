@@ -89,7 +89,7 @@ module.exports = class TaskController {
             title: req.body.title,
             description: req.body.description,
             deadline: req.body.deadline,
-            categoryId: req.body.category,
+            categoryId: req.body.category || null,
             userId: req.user.id,
             status: req.body.status,
         }
@@ -115,7 +115,7 @@ module.exports = class TaskController {
             title: req.body.title,
             description: req.body.description,
             deadline: req.body.deadline,
-            categoryId: req.body.category,
+            categoryId: req.body.category || null,
             userId: req.user.id,
             status: req.body.status,
         }
