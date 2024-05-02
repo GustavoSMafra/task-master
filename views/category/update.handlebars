@@ -24,7 +24,7 @@
                         </button>
                     </div>
 
-                    <div id="dropdown-menu" class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+                    <div id="dropdown-menu" class="scroll-bar-hidden origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden max-h-52 overflow-y-auto">
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
                             <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="selectOption('bi bi-book', '- bi bi-book')">
                                 <i class="bi bi-book mr-2"></i>
@@ -129,16 +129,7 @@
             contentType: 'application/json',
             success: function (response) {
                 if(response.success){
-                    Toastify({
-                        text: "Categoria deletada com sucesso!",
-                        duration: 3000,
-                        gravity: "top",
-                        position: "right",
-                        className: "tost-success",
-                    }).showToast();
-                    setTimeout(function() {
-                        window.location.href = '/category/';
-                    }, 1500);
+                    window.location.href = '/category/';
                 } else {
                     Toastify({
                         text: "Erro ao deletar categoria!",
