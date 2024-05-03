@@ -6,11 +6,14 @@
     <form class="flex flex-col w-5/6 h-4/6 items-center justify-evenly" action="/user/login" method="post">
         <div class="w-full">
             <label style="color: #4B4B4B;" class="block text-sm font-medium" for="username">Username</label>
-            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="text" name="username" id="username">
+            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="text" name="username" id="username" required>
         </div>
         <div class="w-full">
             <label style="color: #4B4B4B;" class="block text-sm font-medium" for="password">Senha</label>
-            <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="password" name="password" id="password">
+            <div class="flex flex-row items-center">
+                <input class="w-full px-3 py-2 border border-gray-300 rounded-md" type="password" name="password" id="password" required>
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password cursor-pointer relative right-8 w-0" onclick="tooglePassword()"></span>
+            </div>
         </div>
         <button style="background-color: #8354D0;"  class="w-2/4 px-3 py-2 rounded-md text-white mt-5 ml-auto" type="submit">Entrar</button>
     </form>
@@ -18,3 +21,15 @@
         <p style="color: #EA2B2B;">{{errorMessage}}</p>
     {{/if}}
 </div>
+
+<script>
+    function tooglePassword(){
+        $(".toggle-password").toggleClass("fa-eye fa-eye-slash");
+        let input = $("#password");
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    }
+</script>
