@@ -92,7 +92,7 @@
             success: function (response) {
                 if(!response.success){
                     Toastify({
-                        text: "Erro ao trocar de status!",
+                        text: response.message,
                         duration: 3000,
                         gravity: "top",
                         position: "right",
@@ -131,16 +131,9 @@
                     document.getElementById('checklistName').value = '';
                     document.getElementById('checklistDone').checked = false;
                     addChecklistItemToUI(newItem, response.data.checklistId);
-                    Toastify({
-                        text: "Item adicionado com sucesso!",
-                        duration: 3000,
-                        gravity: "top",
-                        position: "right",
-                        className: "tost-success",
-                    }).showToast();
                 } else {
                     Toastify({
-                        text: "Erro ao adicionar item!",
+                        text: response.message,
                         duration: 3000,
                         gravity: "top",
                         position: "right",
@@ -203,16 +196,9 @@
                     if (itemDiv) {
                         checklistItems.removeChild(itemDiv);
                     }
-                    Toastify({
-                        text: "Item removido com sucesso!",
-                        duration: 3000,
-                        gravity: "top",
-                        position: "right",
-                        className: "tost-success",
-                    }).showToast();
                 } else {
                     Toastify({
-                        text: "Erro ao remover item!",
+                        text: response.message,
                         duration: 3000,
                         gravity: "top",
                         position: "right",
@@ -233,7 +219,7 @@
                     window.location.href = '/';
                 } else {
                     Toastify({
-                        text: "Erro ao deletar tarefa!",
+                        text: response.message,
                         duration: 3000,
                         gravity: "top",
                         position: "right",
