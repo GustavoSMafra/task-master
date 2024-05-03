@@ -62,7 +62,7 @@ Category.hasMany(Task, {
     foreignKey: 'categoryId',
     onDelete: 'SET NULL',
     hooks: true
-  });
-  Task.belongsTo(Category, { foreignKey: 'categoryId' });
+});
+Task.belongsTo(Category, { foreignKey: 'categoryId' });
 
 module.exports = Task;
