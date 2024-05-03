@@ -1,1 +1,1 @@
-A generic task controler
+A generic task mannager
