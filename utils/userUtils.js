@@ -11,7 +11,7 @@ function autenticarUsuario(req, res, next) {
         jwt.verify(token, secretKey, async (err, decoded) => {
             if (err) {
                 res.clearCookie('authToken');
-                res.redirect('user/login');
+                res.redirect('/user/login');
             }
 
             const user = await User.findOne({
@@ -26,7 +26,7 @@ function autenticarUsuario(req, res, next) {
                 next();
             } else {
                 res.clearCookie('authToken');
-                res.redirect('user/login');
+                res.redirect('/user/login');
             }
 
         });
