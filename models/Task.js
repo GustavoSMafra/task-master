@@ -58,7 +58,11 @@ Task.statusList = {
 User.hasMany(Task, { foreignKey: 'userId' });
 Task.belongsTo(User, { foreignKey: 'userId' });
 
-Category.hasMany(Task, { foreignKey: 'categoryId' });
-Task.belongsTo(Category, { foreignKey: 'categoryId' });
+Category.hasMany(Task, {
+    foreignKey: 'categoryId',
+    onDelete: 'SET NULL',
+    hooks: true
+  });
+  Task.belongsTo(Category, { foreignKey: 'categoryId' });
 
 module.exports = Task;
