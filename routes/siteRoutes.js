@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { autenticarUsuario } = require('../utils/userUtils');
+const { authenticateUser } = require('../utils/userUtils');
 
 const SiteController = require('../controllers/SiteController');
 
-router.get('/', autenticarUsuario,  SiteController.homeView);
+router.get('/', authenticateUser,  SiteController.homeView);
 
 
 module.exports = router;

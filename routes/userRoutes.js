@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { semUsuario } = require('../utils/userUtils');
+const { withoutUser } = require('../utils/userUtils');
 
 const UserController = require('../controllers/UserController');
 
-router.get('/create', semUsuario, UserController.createUserView);
-router.get('/login', semUsuario, UserController.loginUserView);
+router.get('/create', withoutUser, UserController.createUserView);
+router.get('/login', withoutUser, UserController.loginUserView);
 router.get('/logout', UserController.logoutUser);
 
 router.post('/create', UserController.createUser);

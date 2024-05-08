@@ -4,7 +4,7 @@ const secretKey = process.env.SECRET_KEY;
 
 const User = require('../models/User');
 
-function autenticarUsuario(req, res, next) {
+function authenticateUser(req, res, next) {
     const token = req.cookies.authToken;
 
     if (token) {
@@ -35,7 +35,7 @@ function autenticarUsuario(req, res, next) {
     }
 }
 
-function semUsuario(req, res, next) {
+function withoutUser(req, res, next) {
     const token = req.cookies.authToken;
 
     if (token) {
@@ -46,6 +46,6 @@ function semUsuario(req, res, next) {
 }
 
 module.exports = {
-    autenticarUsuario,
-    semUsuario
+    authenticateUser,
+    withoutUser
 };

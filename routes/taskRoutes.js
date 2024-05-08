@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const { autenticarUsuario } = require('../utils/userUtils');
+const { authenticateUser } = require('../utils/userUtils');
 
 const TaskController = require('../controllers/TaskController');
 
-router.get('/', autenticarUsuario, TaskController.listTasks);
-router.get('/create', autenticarUsuario, TaskController.createTask);
-router.get('/update/:id', autenticarUsuario, TaskController.updateTask);
-router.post('/create', autenticarUsuario, TaskController.createTaskSave);
-router.put('/update/:id', autenticarUsuario, TaskController.updateTaskSave);
-router.put('/change-status/:id', autenticarUsuario, TaskController.changeStatus);
-router.delete('/delete/:id', autenticarUsuario, TaskController.deleteTask);
+router.get('/', authenticateUser, TaskController.listTasks);
+router.get('/create', authenticateUser, TaskController.createTask);
+router.get('/update/:id', authenticateUser, TaskController.updateTask);
+router.post('/create', authenticateUser, TaskController.createTaskSave);
+router.put('/update/:id', authenticateUser, TaskController.updateTaskSave);
+router.put('/change-status/:id', authenticateUser, TaskController.changeStatus);
+router.delete('/delete/:id', authenticateUser, TaskController.deleteTask);
 
 module.exports = router;
