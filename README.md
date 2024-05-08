@@ -40,7 +40,7 @@ $ npm install
 # Run the app
 $ npm start
 ```
-> **Run local**
+> **Localhost**
 > Don't forget to create a .env with the necessary information, all you need is a local database and a secret key that will be used by bcrypt. (All you need is in the .env-default file)
 
 > **Note**
