@@ -74,12 +74,6 @@ This software uses the following open source packages:
 
 [TaskMaster](https://task-control-node.onrender.com/) - Web version of TaskMaster (The project can be unavailable)
 
-## License
+## [License](https://github.com/GustavoSMafra/task-master/blob/main/LICENSE.md)
 
-MIT
-
----
-
-> GitHub [@GustavoSMafra](https://github.com/GustavoSMafra) &nbsp;&middot;&nbsp;
-> LinkedIn [@GustavoSMafra](https://www.linkedin.com/in/gustavosmafra/)
-
+MIT © [Gustavo Mafra ](https://www.linkedin.com/in/gustavosmafra/)
