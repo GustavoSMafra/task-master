@@ -14,6 +14,8 @@
   <a href="#license">License</a>
 </p>
 
+![screenshot](https://github.com/GustavoSMafra/task-master/blob/main/imgs/task-master-home.png)
+
 ## Key Features
 
 * Manage tasks 
